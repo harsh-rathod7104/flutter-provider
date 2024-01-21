@@ -1,0 +1,4 @@
+The builder function takes three parameters:
+context: The build context.
+countProvider: The current instance of CountProvider.
+child: The child widget that is not rebuilt when the data changes. It's optional and can be omitted if not needed.
