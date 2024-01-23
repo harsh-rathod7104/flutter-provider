@@ -13,8 +13,8 @@ class _ExampleOneScreenState extends State<ExampleOneScreen> {
   @override
   Widget build(BuildContext context) {
     print("Build");
-    final sliderProvider =
-        Provider.of<ExampleOneProvider>(context, listen: false);
+    // final sliderProvider =
+    //     Provider.of<ExampleOneProvider>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(),

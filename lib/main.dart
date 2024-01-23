@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx/provider/count_provider.dart';
 import 'package:flutter_getx/provider/example_one_provider.dart';
+import 'package:flutter_getx/provider/favourite_provider.dart';
+import 'package:flutter_getx/provider/theme_changer.dart';
 import 'package:flutter_getx/screens/count_example.dart';
+import 'package:flutter_getx/screens/dark_theme.dart';
 import 'package:flutter_getx/screens/example_one.dart';
+import 'package:flutter_getx/screens/favourite/favourite_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -17,10 +21,24 @@ class MainApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CountProvider()),
-        ChangeNotifierProvider(create: (_) => ExampleOneProvider())
+        ChangeNotifierProvider(create: (_) => ExampleOneProvider()),
+        ChangeNotifierProvider(create: (_) => FavouriteProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeChangeProvider()),
       ],
-      child: MaterialApp(
-        home: ExampleOneScreen(),
+      child: Builder(
+        builder: (BuildContext context) {
+          final themeChangeProvider = Provider.of<ThemeChangeProvider>(context);
+          return MaterialApp(
+            themeMode: themeChangeProvider.themeMode,
+            theme: ThemeData(
+              useMaterial3: false,
+            ),
+            darkTheme: ThemeData(
+              brightness: Brightness.dark,
+            ),
+            home: DarkThemeScreen(),
+          );
+        },
       ),
     );
   }
